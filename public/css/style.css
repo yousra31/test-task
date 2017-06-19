@@ -531,7 +531,7 @@ li{
     }
 
     @-moz-document url-prefix() {
-        .custom-dropdown__select { padding-right: .9em }
+        .custom-dropdown__select { padding-right: 10em }
         .custom-dropdown--large .custom-dropdown__select { padding-right: 1.3em }
         .custom-dropdown--small .custom-dropdown__select { padding-right: .5em }
     }

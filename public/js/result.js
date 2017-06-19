@@ -2,7 +2,6 @@ $(document).ready(function(){
 
 	$('#result').submit(function(e){
 		
-
 		var res = {};
 		$.ajax({
 			url: $('#result').attr('action'),
@@ -136,36 +135,11 @@ $(document).ready(function(){
 					$(".quiz").fadeOut();
 					$(".result").show();
 					//change background-image depending of the result
-					switch(i){
-						case 'marrakesh':
-							$('body').css("background","url('css/img/marrakesh.jpg') no-repeat center fixed");
-						break;
-						case 'munich':
-							$('body').css("background","url('css/img/munich.jpg') no-repeat center fixed");
-						break;
-						case 'london':
-							$('body').css("background","url('css/img/london.jpg') no-repeat center fixed");
-						break;
-						case 'rio':
-							$('body').css("background","url('css/img/rio.jpg') no-repeat center fixed");
-						break;
-						case 'moscow':
-							$('body').css("background","url('css/img/moscow.jpg') no-repeat center fixed");
-						break;
-					}
+					changeBackgroundResult(i);
+					
 					//put the first letter of the name on the logo with the choosen color
-					for (var key in res) {
-
-						if(key=="name"){
-							$('.first-letter').append('<span class="color-first-letter" >'+ res[key].slice(0,1).toUpperCase()+'</span>');
-						}
-    				
-						if(key=="color"){
-							var color = res[key].replace(/%23/g,"#");
-							$('.answer').html('<div>The international city that fits you is:<span style="color:'+color +'"> '+ i.substring( 0, 1 ).toUpperCase() +  i.substring( 1 ) +'</span></div>');
-							$('.color-first-letter').css("color", color);
-						}
-					}
+					styleResult(res,i);
+					
 				}
 			}
 
@@ -176,7 +150,39 @@ $(document).ready(function(){
 		
 	});
 	
+	function changeBackgroundResult(city){
+        switch(city){
+            case 'marrakesh':
+                $('body').css("background","url('css/img/marrakesh.jpg') no-repeat center fixed");
+            break;
+            case 'munich':
+                $('body').css("background","url('css/img/munich.jpg') no-repeat center fixed");
+            break;
+            case 'london':
+                $('body').css("background","url('css/img/london.jpg') no-repeat center fixed");
+            break;
+            case 'rio':
+                $('body').css("background","url('css/img/rio.jpg') no-repeat center fixed");
+            break;
+            case 'moscow':
+                $('body').css("background","url('css/img/moscow.jpg') no-repeat center fixed");
+            break;
+        }
+    }
+	function styleResult(res,city){
+        for (var key in res) {
 
+            if(key=="name"){
+                $('.first-letter').append('<span class="color-first-letter" >'+ res[key].slice(0,1).toUpperCase()+'</span>');
+            }
+        
+            if(key=="color"){
+                var color = res[key].replace(/%23/g,"#");
+                $('.answer').html('<div>The international city that fits you is:<span style="color:'+color +'"> '+ city.substring( 0, 1 ).toUpperCase() +  city.substring( 1 ) +'</span></div>');
+                $('.color-first-letter').css("color", color);
+            }
+        }
+    }
 	
 
 });
